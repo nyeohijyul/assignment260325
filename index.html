@@ -22,12 +22,12 @@
     <button id="resetBtn">⭮</button>
     <script>
       const list = document.querySelector("#list");
-      const text = document.querySelector("#tasktextInput");
+      const textInput = document.querySelector("#tasktextInput");
       const addBtn = document.querySelector("#addBtn");
       const resetBtn = document.querySelector("#resetBtn");
 
       function appendNewLI() {
-        if (getInputValue()) {
+        if ( getInputValue() ) {
           const newLI = document.createElement("li");
           newLI.textContent = getInputValue();
           const newBtn = document.createElement("button");
@@ -37,15 +37,15 @@
           resetInputValue();
         } else { alert("할 일을 입력하세요."); }
       }
-      function getInputValue() { return text.value.trim(); }
-      function resetInputValue() { text.value = ""; }
+      function getInputValue() { return textInput.value.trim(); }
+      function resetInputValue() { textInput.value = ""; }
 
-      list.addEventListener("click", (event) => {
-        if (event.target.tagName == "LI") { event.target.classList.toggle("done"); }
-        if (event.target.tagName == "BUTTON") { event.target.parentNode.remove(); }
-      });
-      addBtn.addEventListener("click", appendNewLI);
-      resetBtn.addEventListener("click", resetInputValue);
+      list.addEventListener( "click", event => {
+        if ( event.target.tagName == "LI" ) { event.target.classList.toggle("done"); }
+        if ( event.target.tagName == "BUTTON" ) { event.target.parentNode.remove(); }
+      } );
+      addBtn.addEventListener( "click", appendNewLI );
+      resetBtn.addEventListener( "click", resetInputValue );
     </script>
   </body>
 </html>
