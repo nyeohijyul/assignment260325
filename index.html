@@ -26,6 +26,8 @@
       const addBtn = document.querySelector("#addBtn");
       const resetBtn = document.querySelector("#resetBtn");
 
+      function getInputValue() { return textInput.value.trim(); }
+      function resetInputValue() { textInput.value = ""; }
       function appendNewLI() {
         if ( getInputValue() ) {
           const newLI = document.createElement("li");
@@ -37,8 +39,6 @@
           resetInputValue();
         } else { alert("할 일을 입력하세요."); }
       }
-      function getInputValue() { return textInput.value.trim(); }
-      function resetInputValue() { textInput.value = ""; }
 
       list.addEventListener( "click", event => {
         if ( event.target.tagName == "LI" ) { event.target.classList.toggle("done"); }
