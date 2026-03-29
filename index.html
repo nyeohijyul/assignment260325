@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>미니 리스트 만들기 - JavaScript 심화 (1) 세션 과제</title>
+    <style>
+      button {
+        margin-left: 10px;
+      }
+      input {
+        margin-left: 40px;
+      }
+      .done {
+        color: grey;
+        text-decoration: line-through grey 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="list">
+      <li>공부하기<button>✖</button></li>
+    </ul>
+    <input id="tasktext" type="text" placeholder="할 일을 입력하세요." />
+    <button id="confirmBtn">✔</button>
+    <button id="resetBtn">⭮</button>
+    <script>
+      const confirmBtn = document.querySelector("#confirmBtn");
+      const resetBtn = document.querySelector("#resetBtn");
+      const list = document.querySelector("#list");
+
+      confirmBtn.addEventListener("click", appendNewLI);
+      resetBtn.addEventListener("click", resetInputValue);
+
+      function appendNewLI() {
+        if (getInputValue()) {
+          const newLI = document.createElement("li");
+          newLI.textContent = getInputValue();
+          const newBtn = document.createElement("button");
+          newBtn.textContent = "✖";
+          newLI.appendChild(newBtn);
+          list.appendChild(newLI);
+          resetInputValue();
+        } else {
+          alert("할 일을 입력해주세요.");
+        }
+      }
+      function getInputValue() {
+        const text = document.querySelector("#tasktext").value;
+        return text.trim();
+      }
+      function resetInputValue() {
+        const input = document.querySelector("input");
+        input.value = "";
+      }
+
+      list.addEventListener("click", (event) => {
+        if (event.target.tagName == "LI") {
+          event.target.classList.toggle("done");
+        }
+        if (event.target.tagName == "BUTTON") {
+          event.target.parentNode.remove();
+        }
+      });
+    </script>
+  </body>
+</html>
